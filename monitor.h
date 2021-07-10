@@ -28,6 +28,7 @@ extern "C" {
 // SRAM area
 //extern byte_t *sram;
 int xprintf (const char *format, ...);
+int xmonitor(void);
 
 #if !defined(SRAM_SIZE)
 #define SRAM_SIZE 0x10000
@@ -51,9 +52,9 @@ struct codeinfo {
 	uint16_t start;
 	int length;
 };
+extern struct codeinfo codes[];
 #endif
 
-extern struct codeinfo codes[];
 
 //
 // command table and its entry

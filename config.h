@@ -24,17 +24,19 @@ extern "C" {
 //
 // feature selections
 //
-//#define USE_UART
+#define USE_UART
+// either USE_AVRUART or USE_ARDUINO_SERIAL should be specified
+#define USE_AVRUART
 
 //
 // monitor program
 //
-//#define USE_MONITOR
+#define USE_MONITOR
 
 //
 // feature to read Intel HEX format files
 //
-//#define USE_INTELHEX
+#define USE_INTELHEX
 
 //
 // xmodem file downloader
@@ -94,12 +96,17 @@ extern "C" {
 
 #include "typedefs.h"
 
+#if defined(USE_UART)
+#include "uart.h"
+#endif
+
 #if defined(USE_SRAM)
 #include "sram.h"
 #endif
 
 #if defined(USE_MONITOR)
 #include "monitor.h"
+#include "crc16.h"
 #endif
 
 #if defined(USE_SPI)

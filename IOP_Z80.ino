@@ -4,8 +4,8 @@
 //
 
 #include "config.h"
-
 #include "ucp_pindefs.h"
+#include <stdlib.h>
 
 //
 // CLK ... Counter/Timer2
@@ -86,6 +86,7 @@ void iop (void)
   }
 }
 
+
 //
 // setup, loop
 //
@@ -98,6 +99,10 @@ void setup() {
   DDRG |= 0b00000011;
   TOGGLE();
   TOGGLE();
+  //
+  // init peripherals
+  //
+  UART_init();
   //
   // Port initialize
   //
@@ -140,12 +145,15 @@ void setup() {
   //
   // start CPU
   //
-  setPin(RESET);
+  //setPin(RESET);
 
 }
+
+extern "C" int xmonitor(void);
 
 void loop() {
   // put your main code here, to run repeatedly:
   //TOGGLE();
-  iop();
+  //iop();
+  xmonitor();
 }
